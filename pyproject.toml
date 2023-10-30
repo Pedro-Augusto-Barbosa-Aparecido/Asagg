@@ -36,7 +36,7 @@ lint-fix = "black . && isort ."
 docs = "mkdocs serve"
 test = "pytest -s -x --cov=asagg_lib -vv"
 pre_test = "task lint"
-post_test = "coverage html"
+post_test = "coverage html && python tasks/open_browser.py"
 
 [tool.black]
 line-length = 80
