@@ -1,0 +1,14 @@
+site_name: Asagg
+repo_url: https://github.com/pedroaba/asagg
+repo_name: predoaba/asagg
+
+theme:
+  name: material
+  logo: assets/icon.png
+  favicon: assets/icon.png
+
+markdown_extensions:
+  - attr_list
+
+extra_css:
+  - stylesheets/extra.css
