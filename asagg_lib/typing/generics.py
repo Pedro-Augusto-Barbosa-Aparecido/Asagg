@@ -1,4 +1,4 @@
-from typing import Protocol, runtime_checkable
+from typing import Protocol, TypeVar, runtime_checkable
 
 
 @runtime_checkable
@@ -13,3 +13,7 @@ class ClassType(Protocol):
 
     def __init__(self):
         pass
+
+
+# generic type
+_T: TypeVar = TypeVar("_T", bound=object)
