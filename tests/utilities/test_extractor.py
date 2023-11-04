@@ -21,7 +21,7 @@ class TestExtractor(unittest.TestCase):
         super(TestExtractor, self).setUp()
         self.extractor = Extractor
 
-    def test_extractor_attributes(self):
+    def test_it_should_be_able_to_extract_all_attributes(self):
         attributes = self.extractor.extract_attributes(Square)
 
         verification_list = []
@@ -41,7 +41,7 @@ class TestExtractor(unittest.TestCase):
         """.strip(),
         )
 
-    def test_extractor_name(self):
+    def test_it_should_be_able_to_extract_name_of_class(self):
         name_extracted = self.extractor.extract_name_of_class(Square)
 
         self.assertEqual(

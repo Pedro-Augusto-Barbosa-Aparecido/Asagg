@@ -1,6 +1,6 @@
 import unittest
 
-from asagg_lib.asagg import Assag
+from asagg_lib.asagg import Asagg
 
 
 class TestAsaggGetter(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestAsaggGetter(unittest.TestCase):
             "__bod": 4,
         }
 
-        @Assag.getter
+        @Asagg.getter
         class Square:
             def __init__(self):
                 self._edge = _expect["_edge"]
@@ -20,7 +20,16 @@ class TestAsaggGetter(unittest.TestCase):
 
         self.square = Square()
 
-    def test_asagg_getter_generator(self):
+    def test_it_should_be_able_to_create_getter_to_private_and_protected_properties(
+        self,
+    ):
+        list_of_the_members = self.square.__dir__()
+
+        self.assertIn("edge", list_of_the_members)
+        self.assertIn("border", list_of_the_members)
+        self.assertIn("bod", list_of_the_members)
+
+    def test_it_should_be_able_to_get_a_value_to_new_setter_property(self):
         """Test if getters is generate correctly"""
         self.assertEqual(self.expected_values["__bod"], self.square.bod)
         self.assertEqual(self.expected_values["__border"], self.square.border)
