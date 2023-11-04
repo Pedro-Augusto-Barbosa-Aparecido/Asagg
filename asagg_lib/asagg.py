@@ -3,10 +3,11 @@ from typing import Any
 
 from asagg_lib.typing.generics import _T
 from asagg_lib.utils.extractor import Extractor
+from asagg_lib.utils.formatter import format_attributes_names
 from asagg_lib.utils.validators import validate_type_comparing_with_annother_var
 
 
-class Assag(ABC):
+class Asagg(ABC):
     """
     An abstract base class for generating getters and setters for private and protected attributes.
     This class provides methods to generate getters for private and protected attributes of a given class.
@@ -54,17 +55,13 @@ class Assag(ABC):
         classname = Extractor.extract_name_of_class(_class)
 
         new_attributes = []
-        for attr in attrs:
-            value_of_property: property = Assag._default_getter(attr)
-            value_of_property.setter = Assag._default_setter(attr).setter
+        for index, (attr_raw, attr_formatted) in enumerate(
+            zip(attrs, format_attributes_names(attrs, classname))
+        ):
+            value_of_property = Asagg._default_getter_and_setter(attr_raw)
 
-            attr = attr.replace("_", "")
-            if classname in attr:
-                attr = attr.replace(classname, "")
-
-            setattr(_class, attr, value_of_property)
-            new_attributes.append(attr)
-
+            setattr(_class, attr_formatted, value_of_property)
+            new_attributes.append(attr_formatted)
             del value_of_property
 
         for new_attr in new_attributes:
@@ -89,15 +86,13 @@ class Assag(ABC):
         classname = Extractor.extract_name_of_class(_class)
 
         new_attributes = []
-        for attr in attrs:
-            value_of_property: property = Assag._default_getter(attr)
+        for attr_raw, attr_formatted in zip(
+            attrs, format_attributes_names(attrs, classname)
+        ):
+            value_of_property: property = Asagg._default_getter(attr_raw)
 
-            attr = attr.replace("_", "")
-            if classname in attr:
-                attr = attr.replace(classname, "")
-
-            setattr(_class, attr, value_of_property)
-            new_attributes.append(attr)
+            setattr(_class, attr_formatted, value_of_property)
+            new_attributes.append(attr_formatted)
 
             del value_of_property
 
@@ -123,15 +118,13 @@ class Assag(ABC):
         classname = Extractor.extract_name_of_class(_class)
 
         new_attributes = []
-        for attr in attrs:
-            value_of_property: property = Assag._default_setter(attr)
+        for attr_raw, attr_formatted in zip(
+            attrs, format_attributes_names(attrs, classname)
+        ):
+            value_of_property: property = Asagg._default_setter(attr_raw)
 
-            attr = attr.replace("_", "")
-            if classname in attr:
-                attr = attr.replace(classname, "")
-
-            setattr(_class, attr, value_of_property)
-            new_attributes.append(attr)
+            setattr(_class, attr_formatted, value_of_property)
+            new_attributes.append(attr_formatted)
 
             del value_of_property
 
@@ -156,7 +149,7 @@ class Assag(ABC):
     @staticmethod
     def _default_setter(attr: Any) -> property:
         """
-        This function is a alias to create a default setter for any attr
+        This function is an alias to create a default setter for any attr
 
         Parameters:
             attr: any attribute of a class to create a property function
@@ -165,9 +158,27 @@ class Assag(ABC):
             a property function for the attribute
         """
         return property(
-            fset=lambda self, value: Assag.__default_function_setter(
+            fset=lambda self, value: Asagg.__default_function_setter(
                 self, attr, value
             )
+        )
+
+    @staticmethod
+    def _default_getter_and_setter(attr):
+        """
+        This function is an alias to create a default setter and getter for any attr
+
+        Parameters:
+            attr: any attribute of a class to create a property function
+
+        Returns:
+            a property function for the attribute
+        """
+        return property(
+            lambda self: Asagg.__default_function_getter(self, attr),
+            lambda self, value: Asagg.__default_function_setter(
+                self, attr, value
+            ),
         )
 
     @staticmethod
@@ -184,6 +195,7 @@ class Assag(ABC):
 
         """
         type_to_compare = type(getattr(self, attr))
+        print(attr)
 
         if validate_type_comparing_with_annother_var(type_to_compare, value):
             setattr(self, attr, value)
@@ -192,3 +204,17 @@ class Assag(ABC):
             f"type of {self}.{attr} is different of {value} | "
             f"TypeObject = {getattr(self, attr)} & TypeValue = {type(value)}"
         )
+
+    @staticmethod
+    def __default_function_getter(self: Any, attr: str) -> Any:
+        """
+        This method is responsable to get the value on object
+
+        Parameters:
+            self: Object that you want to create a set function
+            attr: attribute of the Object
+
+        Returns:
+            value of attribute
+        """
+        return getattr(self, attr)

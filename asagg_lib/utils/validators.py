@@ -17,6 +17,6 @@ def validate_type_comparing_with_annother_var(
     """
 
     # comparing if both values is the same type
-    if isinstance(value_that_will_be_compared, type(type_to_compare)):
+    if isinstance(value_that_will_be_compared, type_to_compare):
         return True
     return False
