@@ -72,15 +72,14 @@ class Asagg(ABC):
     @staticmethod
     def getter(_class: _T) -> _T:
         """
-        Generate Getters for all **private** and **protected** attributes for '_class', this method modify the class structure
-        to generate a getter, adding new functions and properties
+        Generate Getters for all **private** and **protected** attributes for '_class', this method modify the class
+        structure to generate a getter, adding new functions and properties
 
         Parameters:
             _class: this parameter is a class that will be generated the getters
 
         Returns:
             The return is the same class, but the class has getters for private and protected attributes
-
         """
         attrs = Extractor.extract_attributes(_class)
         classname = Extractor.extract_name_of_class(_class)
@@ -112,7 +111,6 @@ class Asagg(ABC):
 
         Returns:
             The return is the same class, but the class has getters for private and protected attributes
-
         """
         attrs = Extractor.extract_attributes(_class)
         classname = Extractor.extract_name_of_class(_class)
@@ -195,7 +193,6 @@ class Asagg(ABC):
 
         """
         type_to_compare = type(getattr(self, attr))
-        print(attr)
 
         if validate_type_comparing_with_annother_var(type_to_compare, value):
             setattr(self, attr, value)

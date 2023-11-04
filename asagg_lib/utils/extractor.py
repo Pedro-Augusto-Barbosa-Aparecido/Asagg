@@ -34,7 +34,9 @@ class Extractor(ABC):
 
         Examples:
             >>> class T:
-            >>>     _test = "protected_attribute"
+            ...     def __init__(self):
+            ...         self._test = "protected_attribute"
+            ...
             >>> Extractor.extract_attributes(T)
             ['_test']
         """
@@ -44,7 +46,7 @@ class Extractor(ABC):
                 attributes = member[1].__code__.co_names
                 break
 
-        return attributes
+        return list(attributes)
 
     @staticmethod
     def extract_name_of_class(_class: ClassType) -> str:

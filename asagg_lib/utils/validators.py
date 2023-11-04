@@ -14,6 +14,12 @@ def validate_type_comparing_with_annother_var(
 
     Returns:
         return True if value is castable or false otherwise
+
+    Examples:
+        >>> validate_type_comparing_with_annother_var(int, 4)
+        True
+        >>> validate_type_comparing_with_annother_var(float, "float")
+        False
     """
 
     # comparing if both values is the same type

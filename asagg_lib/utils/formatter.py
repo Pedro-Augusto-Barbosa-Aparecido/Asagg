@@ -4,15 +4,15 @@ def format_attributes_names(
     """
     Format attributes to make a new attribute and remove classname if attribute name contains it
 
-    Examples:
-        >>> format_attributes_names(["_foo", "_Square_foo"], "Square")
-        ["foo", "foo"]
-
     Parameters:
          attributes: list of all attribute that you want format
          classname: name of class that you retrive the attributes
     Returns:
         return all attributes formatted to make new public attributes
+
+    Examples:
+        >>> format_attributes_names(["_foo", "_Square_foo"], "Square")
+        ['foo', 'foo']
     """
     attributes_formatted: list[str] = []
     for attr in attributes:
