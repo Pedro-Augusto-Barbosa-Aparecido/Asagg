@@ -6,6 +6,8 @@ theme:
   name: material
   logo: assets/icon.png
   favicon: assets/icon.png
+  features:
+    - search
   palette:
     # Palette toggle for light mode
     - scheme: default
