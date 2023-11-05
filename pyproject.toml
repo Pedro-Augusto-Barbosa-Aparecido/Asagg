@@ -22,6 +22,10 @@ pytest-sugar = "^0.9.7"
 mkdocs-material = "^9.4.7"
 mkdocstrings = "^0.23.0"
 mkdocstrings-python = "^1.7.3"
+mkdocs-macros-plugin = "^1.0.5"
+jinja2 = "^3.1.2"
+pymdown-extensions = "^10.3.1"
+materialx = "^1.38.8"
 
 [build-system]
 requires = ["poetry-core"]

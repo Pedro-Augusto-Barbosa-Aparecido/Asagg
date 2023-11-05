@@ -1,31 +1,13 @@
 ![logo of library](assets/icon.png){ width="300" .logo }
 # **Asagg**
 
-The **Asagg** library **(Auto Setter And Getter Generator)** is a library inspired by another
-library that is in the [Java](https://www.java.com) environment, which is the [Lombock](https://projectlombok.org/) library, this library
-aims to automate the generation of access methods to private attributes, 
-automatically generating Getters and Setters Among other things.
+{% include "templates/introduction.md" %}
+{% include "templates/html/cards.html" %}
+{% include "templates/installation.md" %}
 
-## Installation
+## [Usage](#usage)
 
-To install the library use the following command, you can also use another 
-dependency manager of your choice, such as [Poetry](https://python-poetry.org/) or 
-[Pipenv](https://pipenv.pypa.io/en/latest/).
-
-```shell
-# for pip
-> pip install asagg-lib
-
-# for Poetry
-> poetry add --group=dev asagg-lib
-
-# for Pipenv
-> pipenv install asagg-lib
-```
-
-## Usage
-
-Following the same line of operation as Lombock, to be able to use the library, just 
+Following the same line of operation as [**Lombock**](https://projectlombok.org/), to be able to use the library, just 
 use a decorator and the magic will happen. The decorators are divided into three functions 
 where each one has a functionality and one has the functionality of the other two, 
 being their combination.
@@ -95,10 +77,9 @@ class MyClass:
         self._my_private_attribute = "private"
 ```
 
-> #### 📘 **Info**
-> 
-> The function used to generate the **setters** also uses a typing
-> check to prevent a value of a different type from being assigned to the property
+???+ note
+     The function used to generate the **setters** also uses a typing
+     check to prevent a value of a different type from being assigned to the property
 
 ### ``Asagg.data``
 

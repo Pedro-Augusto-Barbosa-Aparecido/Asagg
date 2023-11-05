@@ -8,6 +8,9 @@ theme:
   favicon: assets/icon.png
   features:
     - search
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
   palette:
     # Palette toggle for light mode
     - scheme: default
@@ -23,12 +26,34 @@ theme:
 
 markdown_extensions:
   - attr_list
+  - admonition
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/cards.css
 
 plugins:
+  - macros
   - mkdocstrings:
       handlers:
         python:
           paths: [asagg_lib]
+
+extra:
+  commands:
+  annotate:
+    json: [.s2]

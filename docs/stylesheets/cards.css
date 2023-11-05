@@ -1,0 +1,36 @@
+.card {
+    border-radius: 6px;
+    box-shadow: 0 0 7px 0 #B08FFF;
+    /*padding: 1.875rem;*/
+    /*margin: 1.875rem;*/
+
+    gap: 1rem;
+    width: 10.5rem;
+    cursor: pointer;
+    border-top: 4px solid #6F48C9;
+
+    min-height: 12.625rem;
+}
+
+.card-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-content {
+    padding: 0 0.4rem;
+
+    color: var(--md-default-fg-color--light);
+}
+
+.card-content p {
+    font-size: 0.675rem;
+
+    max-width: 200px;
+}
+
+.card:hover {
+    transition: all 0.3s ease-in-out;
+    transform: translateY(-.5rem);
+}
