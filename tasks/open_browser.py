@@ -3,22 +3,26 @@ import sys
 
 # asking user if he wants to open the coverage of
 # tests on the browser
-can_be_open_browser = input(
-    "Do you want to open the browser to see coverage? (Y/n) "
-).upper()
+try:
+    can_be_open_browser = input(
+        "Do you want to open the browser to see coverage? (Y/n) "
+    ).upper()
+except Exception as e:
+    exit(0)
+
 match can_be_open_browser:
     case "Y":
         pass
     case _:
         exit(0)
 
-# getting operational system
+# getting an operational system
 operational_platform = sys.platform.lower()
 
 # command to run in shell
 command = ""
 
-# matching with operational system
+# matching with an operational system
 if "linux" in operational_platform:
     command = "python -m webbrowser"
 elif "darwin" in operational_platform:
@@ -40,5 +44,8 @@ try:
 except Exception as e:
     print(e)
 
-    command_complete = f'python -m webbroser "{html_coverage_file}"'
-    os.system(command_complete)
+    try:
+        command_complete = f'python -m webbroser "{html_coverage_file}"'
+        os.system(command_complete)
+    except Exception as e:
+        pass
