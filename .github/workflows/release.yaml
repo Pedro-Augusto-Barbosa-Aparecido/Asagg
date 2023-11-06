@@ -7,7 +7,7 @@ on:
 jobs:
   build-lib:
     name: "Library Build"
-    if: startsWith(github.ref, 'refs/tags/v')
+#    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ${{ matrix.os }}
 
     strategy:
