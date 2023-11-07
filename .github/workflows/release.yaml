@@ -1,0 +1,38 @@
+on:
+  push:
+    branches:
+      - master
+    tags: ["*"]
+
+jobs:
+  build-lib:
+    name: "Library Build"
+#    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.6'
+
+      - name: Setup Poetry
+        run: pip install poetry
+
+      - name: Install Project Dependencies
+        run: poetry install --without docs
+
+      - name: Run the Tests
+        run: poetry run task test --cov-report=xml
+
+      - name: Upload Cov to CodeCov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
