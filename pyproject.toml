@@ -1,9 +1,23 @@
 [tool.poetry]
 name = "asagg-lib"
 version = "0.1.0"
-description = ""
+description = "The **Asagg** library **(Auto Setter And Getter Generator)** is a library inspired by another library that is in the Java environment, which is the Lombock library"
+license = "GPL-3.0"
 authors = ["Pedro Augusto Barbosa Aparecido <pedr.augustobarbosa.aparecido@gmail.com>"]
 readme = "README.md"
+classifiers = [
+    "Topic :: Utilities",
+    "Development Status :: 5 - Production/Stable",
+    "Topic :: Software Development :: Libraries",
+    "Natural Language :: English",
+    "Natural Language :: Portuguese (Brazilian)",
+    "Programming Language :: Python :: 3.11"
+]
+
+[tool.poetry.urls]
+"Documentation" = "https://asagg.readthedocs.io"
+"Code" = "https://github.com/pedroaba/Asagg"
+"Bug Tracker" = "https://github.com/pedroaba/Asagg/issues"
 
 [tool.poetry.dependencies]
 python = "^3.11"
