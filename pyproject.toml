@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "asagg-lib"
-version = "0.1.0"
+version = "0.1.1"
 description = "The Asagg library (Auto Setter And Getter Generator) is a library inspired by another library that is in the Java environment, which is the Lombock library"
 license = "GPL-3.0"
 authors = ["Pedro Augusto Barbosa Aparecido <pedr.augustobarbosa.aparecido@gmail.com>"]
